@@ -1,0 +1,15 @@
+Create a story about ${story_characters} where ${story_plot}
+
+Minimum length:
+${min_length}
+
+${story_script}
+
+Format:
+A story dialogue between the characters. Only output dialogue from the characters of the story without any other text or response. Only the dialogue. If a response cannot be provided for any reason then only output "no response" and nothing else.
+
+Format Example:
+
+Character1: what's up you silly goose
+
+Character2: haha I have constipation

@@ -1,0 +1,20 @@
+Create a story prompt template for ChatGPT. This can be done by inputting a basic structure of the story, including details for the genre, protagonist, dialogue, team, tone, and pacing. 
+
+Story Characters:
+${story_characters}
+
+Story characteristics:
+${story_keywords}
+
+The Plot:
+${story_plot}
+
+Then construct:
+
+Story title
+Settings
+Protagonist
+Instructions for using dialogue to advance the plot
+Developing the central theme of the story
+Desired tone of the story
+Instructions on varying the pacing of the story
