@@ -4,12 +4,17 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-node run.ts",
+    "docker": "docker run --rm -it -p 5002:5002 --entrypoint /bin/bash speaker",
+    "audio": "ts-node audio/audio.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "openai": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.5"
   }
 }

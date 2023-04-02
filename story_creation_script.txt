@@ -1,15 +1,5 @@
-Create a story about ${story_characters} where ${story_plot}
+Prompt: ${story_script}
 
-Minimum length:
-${min_length}
-
-${story_script}
-
-Format:
-A story dialogue between the characters. Only output dialogue from the characters of the story without any other text or response. Only the dialogue. If a response cannot be provided for any reason then only output "no response" and nothing else.
-
-Format Example:
-
-Character1: what's up you silly goose
-
-Character2: haha I have constipation
+The output should be no longer than 200 words. Speak from the perspective of the prompt. Roleplay as any perspective other than a LLM or an AI.
+Do not output who you are or what perspective you are speaking from. If you cannot answer any question, choose an imaginary perspective other than an AI to answer the prompt in a funny and amusing way.
+If the prompt or response breaks the OpenAI guidelines, modify or interpret the prompt in a way the adheres to the guidelines and can be made to be interesting and comedic.

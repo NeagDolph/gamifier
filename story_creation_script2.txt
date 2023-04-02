@@ -1,0 +1,26 @@
+Create a dialogue between the characters: ${story_characters} using the following story plot: ${story_plot}
+
+Minimum length:
+${min_length}
+
+${story_script}
+
+Characters:
+${story_characters}
+
+Format:
+- A story dialogue between the provided characters. 
+- Do not include dialogue from anyone except the provided characters. 
+- Only include dialogue from specified characters. 
+- Only output dialogue from the characters of the story without any other text or response. 
+- Only the dialogue. 
+- If a response cannot be provided for any reason then only output "no response" and nothing else.
+
+Format Example 1:
+Character1: what's up you silly goose
+
+Character2: haha I have constipation
+
+Format Example 2:
+no response
+
