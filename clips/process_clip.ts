@@ -6,7 +6,7 @@ const path = require('path');
 const ffmpeg = require('fluent-ffmpeg');
 
 
-const videoExtensions = ['.mov', '.mp4'];
+const videoExtensions = ['.mov', '.mp4', ".mkv"];
 
 function getRandomRawVideo(folderPath: string): Promise<string | null> {
     return new Promise((resolve, reject) => {
