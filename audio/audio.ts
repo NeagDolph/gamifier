@@ -57,6 +57,4 @@ function getAudioDuration(audioFile: string): Promise<number> {
     });
 }
 
-// generateAudio("testing 1, 2, 3. testing 1, 2, 3. I love women!", "out.wav", "p287")
-
 export {generateAudio, getAudioDuration}

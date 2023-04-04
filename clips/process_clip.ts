@@ -91,19 +91,4 @@ function createGameClip(clipDuration: number = 120, inputVideo: string, outputVi
     })
 }
 
-// (async () => {
-//     const folderPath = './clips/raw';
-//     try {
-//         const randomVideo = await getRandomRawVideo(folderPath);
-//         if (randomVideo) {
-//             console.log(`Randomly selected video: ${randomVideo}`);
-//             await createGameClip(120, randomVideo, "clip.mov")
-//         } else {
-//             console.log('No video files found in the folder.');
-//         }
-//     } catch (error) {
-//         console.error(error);
-//     }
-// })();
-
 export {createGameClip, getRandomRawVideo}

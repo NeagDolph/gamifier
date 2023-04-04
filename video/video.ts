@@ -32,14 +32,5 @@ async function createVideo(promptImage: string, outputImage: string, promptAudio
     });
 }
 
-// (async () => {
-//     const promptDuration = await getAudioDuration("./audio/output/prompt.wav");
-//     const outputDuration = await getAudioDuration("./audio/output/output.wav");
-//
-//     console.log("promp", promptDuration)
-//     console.log("out", outputDuration)
-//     await createVideo("./images/output/prompt.png", "./images/output/output.png", "./audio/output/prompt.mp3", "./audio/output/output.mp3", promptDuration, outputDuration, "./clips/output/clip.mov", "./video/output/final.mov")
-// })();
-
 export {createVideo}
 
