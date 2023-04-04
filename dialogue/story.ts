@@ -30,8 +30,16 @@ function generateTemplate(template: string, config: PlotParameters | StoryParame
   return plotTemplate
 }
 
-function formatPlot(message: string): string {
-  return message.replace("Prompt: ", "");
+function formatPlot(message: string, story: string): {prompt: string, story: string} {
+  let chosenPrompt = /Prompt \d:/.exec(story)?.[0] || "";
+
+  let splitMessage = message.split("\n");
+
+  let correctPrompt = splitMessage.find(e => e.includes(chosenPrompt)) || "";
+
+  let newStory = story.split("\n").filter(ln => !ln.includes(chosenPrompt)).join("\n");
+
+  return {prompt: correctPrompt.replace(/P?p?rompt \d?:? ?/, ""), story: newStory.trim()}
 }
 
 async function createCompletion(messages: string[]): Promise<string> {

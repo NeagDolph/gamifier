@@ -5,13 +5,20 @@
   "main": "run.js",
   "scripts": {
     "test": "ts-node run.ts",
-    "docker": "docker run --rm -it -p 5002:5002 --entrypoint /bin/bash speaker",
-    "audio": "ts-node audio/audio.ts"
+    "docker": "docker run --rm -it -p 5002:5002 --entrypoint /bin/bash speaker2",
+    "audio": "ts-node audio/audio.ts",
+    "clip": "ts-node clips/process_clip.ts",
+    "image": "ts-node images/process_images.ts",
+    "videopy": "python3 video/video.py",
+    "video": "ts-node video/video.ts",
+    "split_clips": "ts-node clips/split_clips.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.11.2",
+    "fluent-ffmpeg": "^2.1.2",
     "openai": "^3.2.1"
   },
   "devDependencies": {

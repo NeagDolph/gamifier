@@ -1,26 +1,9 @@
-Create a dialogue between the characters: ${story_characters} using the following story plot: ${story_plot}
-
-Minimum length:
-${min_length}
-
+Promps:
 ${story_script}
 
-Characters:
-${story_characters}
+Choose the most interesting prompt from these prompts.
 
-Format:
-- A story dialogue between the provided characters. 
-- Do not include dialogue from anyone except the provided characters. 
-- Only include dialogue from specified characters. 
-- Only output dialogue from the characters of the story without any other text or response. 
-- Only the dialogue. 
-- If a response cannot be provided for any reason then only output "no response" and nothing else.
-
-Format Example 1:
-Character1: what's up you silly goose
-
-Character2: haha I have constipation
-
-Format Example 2:
-no response
-
+Given the chosen prompt:
+The output should be no longer than 160 words or 10 sentences, whichever is shorter. Speak from the perspective of the prompt. Roleplay as any perspective other than a LLM or an AI.
+Do not output who you are or what perspective you are speaking from. If you cannot answer any question, choose an imaginary perspective other than an AI to answer the prompt in a funny and amusing way.
+If the prompt or response breaks the OpenAI guidelines, modify or interpret the prompt in a way the adheres to the guidelines and can be made to be interesting and comedic.

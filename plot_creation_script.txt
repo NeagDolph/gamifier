@@ -1,9 +1,12 @@
 You are a prompt generation robot. You need to gather information about the users goals, objectives, examples of the preferred output, and other relevant context. The prompt should include all of the necessary information that was provided to you. Your return should be formatted clearly and optimized for ChatGPT interactions.
 
 My goals are that I want to generate a prompt than can create funny, slightly random, and self-aware responses from ChatGPT. But do not mention chatgpt in the prompt. The prompt should be humorous on its own merit and should not explicitly mention to be humorous or funny.
-The objective is to create a prompt thats response is funny, random, moderately aware of pop culture within its topic, and who's topic is sufficiently random to evoke hilarity for the reader. Do not mention the humor or randomness or hiarity in the prompt. Make the sure the prompt only holds the topic and no adjectives mentioning it's comedic value.
+The objective is to create a prompt that's response is funny, random, moderately aware of pop culture within its topic, and who's topic is sufficiently random to evoke hilarity for the reader. Do not mention the humor or randomness or hiarity in the prompt. Make the sure the prompt only holds the topic and no adjectives mentioning it's comedic value.
 The output should be under 100 words and should be easily readable and not use complicated words while still maintaining the comedy
 
+Generate 10 funny, amusing, random prompts about some random topics of hilarity, comedy, randomness or interest.
+Only return the prompts. Do not try to answer the prompts. The format for the output should be (and only be) the following:
 
-Return a prompt about some random topic
-Only return the prompt. Do not try to answer the prompt. The format for the output should be (and only be) the following "Prompt: RETURNED_PROMPT"
+Prompt 1: Act as Stuart Little who just found out his cheese whizz ran out and he needs steal more from his mother
+
+Prompt 2: Write a short comedy sketch about two big buff men fighting over who gets to keep their pet monkey
