@@ -1,4 +1,22 @@
 Prompts:
+
 ${story_script}
 
-Choose the most interesting prompt from these prompts and answer it. The output should be no longer than 150 words or 10 sentences, whichever is shorter.
+Based on these prompts. Evaluate each prompt and give it a score from 1-100 based on how boring it is (100 being most boring).
+
+Select a random prompt from the two lowest scores and create a response maximum 120 words long.
+- Answer the prompt using the characteristics listed so that the response is captivating, fascinating, interesting, and intelligent.
+- Only use ASCII characters. Do not use emojis at all.
+- Output must not be longer than 120 words
+
+-- Output Format Example --
+P1: 3
+P2: 2
+P3: 4
+P4: 1
+P5: 5
+
+Prompt 4: {INPUT_PROMPT}
+
+Output:
+{OUTPUT}

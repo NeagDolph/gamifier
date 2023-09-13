@@ -67,14 +67,13 @@ async function createChatImage(text: string, filename: string, userGenerated: bo
     let topPadding = 30;
     let lineHeight = 28
     const fontSize = 21;
+
     const fontFamily = 'sans-serif';
     const canvasWidth = 900;
 
 
     const canvas = createCanvas(canvasWidth, 1000);
     const ctx = canvas.getContext('2d');
-
-    // const textHeight = measureTextHeight(ctx, text, canvasWidth - leftPadding - rightPadding, lineHeight, userGenerated) + topPadding + bottomPadding;
 
     ctx.fillStyle = textColor;
     ctx.font = `${fontSize}px ${fontFamily}`;
@@ -99,5 +98,9 @@ async function createChatImage(text: string, filename: string, userGenerated: bo
     return outputPath;
 }
 
+// Testing emojis (still doesn't work)
+// (async function () {
+//     createChatImage("😀😃😄😁😆😅😂🤣😊😇🙂🙃😉😌😍😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🤩😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬😈👿👹👺💀☠️👻👽🤖😺😸😹😻😼😽🙀😿😾🤲👐🙌👏🤝👍👎👊✊🤛🤜🤞✌️🤟👌👈👉👆👇☝️✋🤚🖐🖖👋🤙💪🦾🖕✍️👁👄🦷🦴👃🧠🦶🦵🦿 🦸🦹ssure", "cum.png", false)
+// })();
 
 export {createChatImage}

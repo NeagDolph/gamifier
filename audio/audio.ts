@@ -1,17 +1,25 @@
 import {ExecException} from "child_process";
+import {protos} from "@google-cloud/text-to-speech";
+import * as util from "util";
 
 const {exec} = require('child_process');
 const fs = require('fs');
-const ffmpeg = require('fluent-ffmpeg');
+const ffprobe = require('ffprobe');
+const ffprobeStatic = require('ffprobe-static');
+const textToSpeech = require('@google-cloud/text-to-speech');
 
 const inputFilename = 'audio/data/input.txt';
-const outputFilename = 'audio/output/output.wav';
 
 const DEFAULT_SPEAKER = "p330"
 const DEFAULT_MODEL = "tts_models/en/vctk/vits"
 
+const client = new textToSpeech.TextToSpeechClient({
+    keyFilename: "/Users/neil/gamifier.json",
+    projectId: "gamifier-385921"
+});
 
-function generateAudio(message: string, outputFile: string, speaker=DEFAULT_SPEAKER): Promise<string> {
+
+function generateAudioOld(message: string, outputFile: string, speaker = DEFAULT_SPEAKER): Promise<string> {
     return new Promise((res, rej) => {
         fs.writeFileSync(inputFilename, message);
 
@@ -45,16 +53,46 @@ function generateAudio(message: string, outputFile: string, speaker=DEFAULT_SPEA
     })
 }
 
-function getAudioDuration(audioFile: string): Promise<number> {
-    return new Promise((resolve, reject) => {
-        ffmpeg.ffprobe(audioFile, (err: Error, metadata: any) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(metadata.format.duration);
-            }
-        });
-    });
+async function generateAudio(message: string, outputFile: string, speaker?: string): Promise<string> {
+    const request = {
+        input: {text: message},
+        // Select the language and SSML voice gender (optional)
+        voice: {languageCode: 'en-US', name: speaker ?? "en-US-Studio-O"},
+        // select the type of audio encoding
+        audioConfig: {audioEncoding: 'MP3'},
+    };
+
+    const [response] = await client.synthesizeSpeech(request);
+
+    const finalOutputPath = `./audio/output/${outputFile}`
+
+    const writeFile = util.promisify(fs.writeFile);
+    await writeFile(finalOutputPath, response.audioContent, 'binary');
+
+    return finalOutputPath;
+}
+
+//  function getAudioDuration(audioFile: string): Promise<number> {
+//     return new Promise((resolve, reject) => {
+//         ffmpeg.ffprobe(audioFile, (err: Error, metadata: any) => {
+//             if (err) {
+//                 reject(err);
+//             } else {
+//                 resolve(metadata.format.duration);
+//             }
+//         });
+//     });
+// }
+
+async function getAudioDuration(filePath: string): Promise<number> {
+    try {
+        const probeResult = await ffprobe(filePath, { path: ffprobeStatic.path });
+        const audioStream = probeResult.streams.find((stream: any) => stream.codec_type === 'audio');
+        return audioStream.duration;
+    } catch (error) {
+        console.error('Error while calculating audio duration:', error);
+        // return null;
+    }
 }
 
 export {generateAudio, getAudioDuration}

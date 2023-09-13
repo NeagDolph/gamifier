@@ -4,7 +4,6 @@ import argparse
 import sys
 from random import random
 
-# Add this code to parse command-line arguments
 parser = argparse.ArgumentParser(description='Process video with images and audio')
 parser.add_argument('game_clip')
 parser.add_argument('image1_path')
@@ -17,7 +16,6 @@ parser.add_argument('audio2_duration')
 
 args = parser.parse_args()
 
-# Replace the hardcoded values with the arguments passed from Node.js
 promptDuration = float(args.audio1_duration)
 outputDuration = float(args.audio2_duration)
 game_clip = args.game_clip
@@ -28,7 +26,6 @@ audio2_path = args.audio2_path
 output_file = args.output_file
 
 # Image scales, positions and durations
-
 fullLength = (1 + promptDuration + outputDuration)
 
 
@@ -40,7 +37,7 @@ image2 = ImageClip(image2_path)
 input_duration = VideoFileClip(game_clip).duration
 input_width, input_height = VideoFileClip(game_clip).size
 
-clip_duration = promptDuration + outputDuration + 8
+clip_duration = promptDuration + outputDuration + 4
 
 if input_duration <= clip_duration:
     raise ValueError('Input video duration should be longer than the clip duration.')
@@ -62,7 +59,7 @@ image1_duration = fullLength
 
 image2_scale = (new_width / float(image2.size[0])) * 0.96
 image2_y_offset = 260
-image2_start_time = promptDuration + 1
+image2_start_time = promptDuration + 0.2
 image2_duration = outputDuration
 
 # Audio start times

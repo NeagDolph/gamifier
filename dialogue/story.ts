@@ -2,9 +2,8 @@ import { ChatCompletionRequestMessageRoleEnum, Configuration, OpenAIApi } from "
 import { PlotParameters, StoryParameters } from "./parameters";
 const fs = require("fs");
 
-const GPT_MODEL = "gpt-3.5-turbo";
-// const GPT_MODEL = "gpt-4.0";
-const GPT_TEMPERATURE = 1;
+// const GPT_MODEL = "gpt-3.5-turbo";
+const GPT_MODEL = "gpt-4";
 
 const PLOT_TEMPLATE_FILE = "./plot_creation_script.txt"
 const STORY_TEMPLATE_FILE = "./story_creation_script.txt"
@@ -12,8 +11,6 @@ const STORY_TEMPLATE_FILE = "./story_creation_script.txt"
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-
 
 
 const openai = new OpenAIApi(configuration);
@@ -31,24 +28,26 @@ function generateTemplate(template: string, config: PlotParameters | StoryParame
 }
 
 function formatPlot(message: string, story: string): {prompt: string, story: string} {
-  let chosenPrompt = /Prompt \d:/.exec(story)?.[0] || "";
+  let chosenPrompt = /Prompt \d/.exec(story)?.[0] || "";
 
   let splitMessage = message.split("\n");
 
   let correctPrompt = splitMessage.find(e => e.includes(chosenPrompt)) || "";
 
-  let newStory = story.split("\n").filter(ln => !ln.includes(chosenPrompt)).join("\n");
+  let storyFormatRegex = new RegExp("^[\\S\\s]*Output:$", "imy");
 
-  return {prompt: correctPrompt.replace(/P?p?rompt \d?:? ?/, ""), story: newStory.trim()}
+  let newStory = story.replace(storyFormatRegex, "");
+
+  return {prompt: correctPrompt.replace(/P?p?rompt ?\d? ?\([\w, ]*\):? ?/, ""), story: newStory.trim()}
 }
 
-async function createCompletion(messages: string[]): Promise<string> {
+async function createCompletion(messages: string[], temperature: number=1): Promise<string> {
   const formattedMessages = messages.map(el => ({ role: ChatCompletionRequestMessageRoleEnum.User, content: el }));
 
   const completion = await openai.createChatCompletion({
     model: GPT_MODEL,
     messages: formattedMessages,
-    temperature: GPT_TEMPERATURE
+    temperature
   });
 
   const message = completion.data.choices[0].message
@@ -59,7 +58,7 @@ async function createCompletion(messages: string[]): Promise<string> {
 async function generatePlot(config: PlotParameters): Promise<string> {
   const plotTemplate: string = generateTemplate(PLOT_TEMPLATE_FILE, config);
 
-  const completion: string = await createCompletion([plotTemplate]);
+  const completion: string = await createCompletion([plotTemplate], 1.2);
 
   return completion
 }
@@ -67,7 +66,7 @@ async function generatePlot(config: PlotParameters): Promise<string> {
 async function generateStory(config: StoryParameters): Promise<string> {
   const plotTemplate: string = generateTemplate(STORY_TEMPLATE_FILE, config);
 
-  const completion = await createCompletion([plotTemplate]);
+  const completion = await createCompletion([plotTemplate], 1);
 
   return completion
 }
